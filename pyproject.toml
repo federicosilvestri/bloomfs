@@ -1,0 +1,29 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry]
+name = "bloomfs"
+description = "Bloom Filter Implementation"
+version = "0.1.0"
+readme = "README.md"
+authors = ["Federico Silvestri <silves.federico@gmail.com>"]
+
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.11"
+bitstring = "^3.1.9"
+
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.910"
+sphinx = "^4.2"
+sphinx-autodoc-typehints = "^1.12"
+tomlkit = "^0.7"
+doc8 = "^0.9"
+yamllint = "^1.26"
+safety = "^1.10"
+polint = "^0.4"
+ipython = "^7.28"
+flask-shell-ipython = "^0.4.1"
