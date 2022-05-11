@@ -52,3 +52,8 @@ class BoolContainer(AbstractContainer):
         """
         return False not in self.__bloom__
 
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, self.__class__):
+            raise TypeError("The instance you want to check is not comparable")
+
+        return self.__bloom__ == other.__bloom__

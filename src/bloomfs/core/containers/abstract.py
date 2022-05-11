@@ -13,7 +13,9 @@ class AbstractContainer(abc.ABC):
 
     def _check_position_(self, i: int):
         if i < 0 or i >= self.size:
-            raise ValueError("The parameter i cannot be less than zero or greater than size of filter")
+            raise ValueError(
+                "The parameter i cannot be less than zero or greater than size of filter"
+            )
 
     @property
     def size(self):
@@ -27,6 +29,7 @@ class AbstractContainer(abc.ABC):
             i: position of bit
         Returns: None
         """
+
     @abc.abstractmethod
     def get(self, i: int) -> bool:
         """
@@ -48,4 +51,14 @@ class AbstractContainer(abc.ABC):
         """
         This method check if filter is full, so it cannot give useful information if you add elements.
         Returns: Boolean value, True if all bits are set to 1, zero if not.
+        """
+
+    @abc.abstractmethod
+    def __eq__(self, other) -> bool:
+        """
+        Equality must be implemented
+        Args:
+            other: Another AbstractContainer to compare
+
+        Returns: True if equal, false if it is not.
         """
