@@ -1,30 +1,17 @@
 """This file contains the class that represents the data of the filter."""
 from bitstring import BitStream
 
+from .abstract import AbstractContainer
 
-class BloomFilterContainer:
+
+class BitstringContainer(AbstractContainer):
+    """This class provides the implementation of container for BloomFilter using the bistring library."""
+
     def __init__(self, size: int):
-        if size < 0:
-            raise ValueError("The filter size must be greater than 0")
-        self.__size__: int = size
+        super().__init__(size)
         self.__filter__: BitStream = BitStream(
             auto=None, length=self.size, pos=0, offset=0
         )
-
-    @property
-    def size(self) -> int:
-        """
-        Property for
-        Returns:
-
-        """
-        return self.__size__
-
-    def __check_index_parameter__(self, i: int) -> None:
-        if i < 0 or i >= (self.size - 1):
-            raise ValueError(
-                "The i parameter cannot be less than 0 or more than size-1"
-            )
 
     def set(self, i: int) -> None:
         """
@@ -34,8 +21,7 @@ class BloomFilterContainer:
 
         Returns: None
         """
-        self.__check_index_parameter__(i)
-
+        self._check_position_(i)
         self.__filter__.set(value=b"0", pos=i)
 
     def get(self, i: int) -> bool:
@@ -48,4 +34,10 @@ class BloomFilterContainer:
             True if bit is set to 1
             False if bit is set 0
         """
-        self.__check_index_parameter__(i)
+        self._check_position_(i)
+
+    def clear(self) -> None:
+        return
+
+    def is_full(self) -> bool:
+        return False
