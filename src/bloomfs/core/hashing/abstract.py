@@ -1,4 +1,7 @@
 import abc
+import typing
+
+from bloomfs.core.element import AbstractElement
 
 
 class AbstractHashingFamily(abc.ABC):
@@ -34,3 +37,13 @@ class AbstractHashingFamily(abc.ABC):
         Returns: int value that represents the number maximum value that hashing function can assume
         """
         return self.__maximum__
+
+    @abc.abstractmethod
+    def values(self, element: AbstractElement) -> typing.List[int]:
+        """
+        Returns a list of values that the hashing functions has computed, given as input an abstract element.
+        Args:
+            element: the abstract element to compute the hashing function
+
+        Returns: a list of integer values that represents the position of filter to set.
+        """

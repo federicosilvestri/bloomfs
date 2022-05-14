@@ -1,6 +1,7 @@
 import abc
 
 from bloomfs.core.containers import AbstractContainer
+from bloomfs.core.element import AbstractElement
 
 
 class AbstractFilter(abc.ABC):
@@ -24,17 +25,17 @@ class AbstractFilter(abc.ABC):
         return self.__container__
 
     @abc.abstractmethod
-    def put(self, element: int) -> None:
+    def put(self, element: AbstractElement) -> None:
         """
         Put the element inside the filter
         Args:
-            element: integer number that can represent anything. For example and ID, a documentID, or a hashed URL.
+            element: The abstract element
 
         Returns: None
         """
 
     @abc.abstractmethod
-    def exists(self, element: int) -> bool:
+    def exists(self, element: AbstractElement) -> bool:
         """
         Checks the filter output.
         Args:
