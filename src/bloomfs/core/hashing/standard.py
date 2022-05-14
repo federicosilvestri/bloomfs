@@ -16,10 +16,8 @@ class StandardHashingFamily(AbstractHashingFamily):
         super().__init__(functions_n, maximum)
 
     def values(self, element: AbstractElement) -> typing.List[int]:
-        values: typing.List[int] = []
-
-        for _ in range(self.functions_n):
-            value = random.randint(0, self.maximum)
-            values.append(value)
+        values: typing.List[int] = [
+            random.randint(0, self.maximum) for _ in range(0, self.functions_n)
+        ]
 
         return values

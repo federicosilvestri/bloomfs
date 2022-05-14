@@ -1,4 +1,5 @@
 import pickle
+import typing
 from pathlib import Path
 
 from ..containers import AbstractContainer
@@ -8,26 +9,27 @@ from .abstract import AbstractSerializer
 class PickleSerializer(AbstractSerializer):
     """This class is a serializer that uses python Pickle library."""
 
-    def serialize(self, file_path: Path, *args, **kwargs) -> None:
+    def serialize(self, **kwargs) -> None:
         """
         Serialize a container.
         Args:
-            file_path: the file path where write the container
-            *args:
             **kwargs:
+                file_path: the file path where write the container
 
         Returns: None
         """
+        file_path: Path = typing.cast(Path, kwargs.get("file_path"))
         pickle.dump(self._container_, file=file_path.open("wb"))
 
-    def deserialize(self, filepath: Path, *args, **kwargs) -> AbstractContainer:
+    def deserialize(self, **kwargs) -> AbstractContainer:
         """
         Deserialize a container.
         Args:
-            filepath: the file path where read the container
-            *args:
             **kwargs:
+                filepath: the file path where read the container
 
         Returns: The AbstractContainer
         """
-        return pickle.load(file=filepath.open("rb"))
+        file_path: Path = typing.cast(Path, kwargs.get("file_path"))
+        container = pickle.load(file=file_path.open("rb"))
+        return typing.cast(AbstractContainer, container)

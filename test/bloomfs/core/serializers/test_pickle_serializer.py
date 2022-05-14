@@ -19,5 +19,5 @@ class TestPickleSerializer(unittest.TestCase):
     def test_serialize(self):
         serializer = PickleSerializer(self.container)
         serializer.serialize(file_path=self.file_path)
-        deserialized_container = serializer.deserialize(filepath=self.file_path)
+        deserialized_container = serializer.deserialize(file_path=self.file_path)
         self.assertEqual(self.container, deserialized_container)
