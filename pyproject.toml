@@ -14,6 +14,7 @@ authors = ["Federico Silvestri <silves.federico@gmail.com>"]
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
 bitstring = "^3.1.9"
+numpy = "^1.22.3"
 
 
 [tool.poetry.dev-dependencies]
